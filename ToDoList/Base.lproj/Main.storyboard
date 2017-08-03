@@ -44,8 +44,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableviewTasks" destination="lQg-TH-5Zc" id="MI8-Br-aoA"/>
-                        <segue destination="cE9-1Q-WWX" kind="show" identifier="taskdetails" id="GJ5-cN-ZlW"/>
                         <segue destination="jD4-lm-4Dx" kind="show" identifier="addnewtask" id="58t-Nv-yys"/>
+                        <segue destination="cE9-1Q-WWX" kind="show" identifier="taskdetails" id="B03-BC-c6B"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -80,7 +80,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y31-6K-i9W">
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="y31-6K-i9W">
                                 <rect key="frame" x="163" y="376" width="51" height="31"/>
                             </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Important" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4kf-pY-vpa">
@@ -132,25 +132,34 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FLl-kh-rgS">
-                                <rect key="frame" x="165" y="100" width="45" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Task:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FLl-kh-rgS">
+                                <rect key="frame" x="167" y="144" width="41" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Task" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lrz-ZJ-l3q">
-                                <rect key="frame" x="169.5" y="201" width="36" height="21"/>
+                                <rect key="frame" x="169.5" y="245" width="36" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UXk-um-tmU">
+                                <rect key="frame" x="154" y="346" width="67" height="30"/>
+                                <state key="normal" title="Complete"/>
+                                <connections>
+                                    <action selector="deletetask:" destination="cE9-1Q-WWX" eventType="touchUpInside" id="Ad5-ns-Rv8"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="FLl-kh-rgS" firstAttribute="centerX" secondItem="YwV-zb-ZgB" secondAttribute="centerX" id="0pg-kM-vnz"/>
                             <constraint firstItem="lrz-ZJ-l3q" firstAttribute="top" secondItem="FLl-kh-rgS" secondAttribute="bottom" constant="80" id="75d-zC-St1"/>
+                            <constraint firstItem="UXk-um-tmU" firstAttribute="top" secondItem="lrz-ZJ-l3q" secondAttribute="bottom" constant="80" id="GXM-L9-rNP"/>
                             <constraint firstItem="lrz-ZJ-l3q" firstAttribute="centerX" secondItem="YwV-zb-ZgB" secondAttribute="centerX" id="MNX-Lo-dKq"/>
                             <constraint firstItem="FLl-kh-rgS" firstAttribute="top" secondItem="JMT-Ky-jpU" secondAttribute="bottom" constant="80" id="WlM-ul-PHt"/>
+                            <constraint firstItem="UXk-um-tmU" firstAttribute="centerX" secondItem="YwV-zb-ZgB" secondAttribute="centerX" id="jd0-TY-eKK"/>
                         </constraints>
                     </view>
                     <connections>
@@ -159,7 +168,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qS4-xP-RLY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2054" y="449"/>
+            <point key="canvasLocation" x="1022" y="872"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="B2Q-Ng-zGb">

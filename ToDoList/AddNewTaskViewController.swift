@@ -29,8 +29,8 @@ class AddNewTaskViewController: UIViewController {
     
     @IBAction func addtaskbutton(_ sender: Any) {
         
+        //Create new task from details entered
         let tasknew = Task()
-        
         tasknew.name = newtaskname.text!
         tasknew.imp = importance.isOn
         
@@ -40,7 +40,7 @@ class AddNewTaskViewController: UIViewController {
         
         previousVC.tableviewTasks.reloadData()
         //After clicking add go back to the list
-        navigationController?.popViewController(animated: true)
+        navigationController!.popViewController(animated: true)
         
     }
 
