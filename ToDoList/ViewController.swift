@@ -13,17 +13,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var tableviewTasks: UITableView!
     
     var tasks : [Task] = []
-    var rowIndex = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
-       // tasks = makeTaks()
-        
         tableviewTasks.delegate = self
         tableviewTasks.dataSource = self
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        getTask()
+        tableviewTasks.reloadData()
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tasks.count
@@ -31,13 +31,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
-        rowIndex = indexPath.row
+        
         let task = tasks[indexPath.row]
+        
         if task.imp {
-            cell.textLabel?.text = "❗️ \(task.name)"
-        } else {
-            cell.textLabel?.text = task.name
+            cell.textLabel?.text = "❗️\(task.name!)"
+            
+        } else{
+            cell.textLabel?.text = task.name!
         }
+        
         return cell
     }
     
@@ -50,49 +53,23 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if segue.identifier == "addnewtask"{
-            let nextVC = segue.destination as! AddNewTaskViewController
-            nextVC.previousVC = self
-        }
-        
         if segue.identifier == "taskdetails" {
             let deatailobj = segue.destination as! TaskDetailViewController
             deatailobj.tasksdetails = sender as! Task
-            
-            let nextViewVC = segue.destination as! TaskDetailViewController
-            nextViewVC.previousVC = self
-            
-            
         }
         
     }
     
-
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    func makeTaks() -> [Task] {
-        
-        let task1 = Task()
-        task1.name = "Walk dog"
-        task1.imp = false;
-        
-        let task2 = Task()
-        task2.name = "Fuck"
-        task2.imp = true;
-        
-        let task3 = Task()
-        task3.name = "Buy Cheese"
-        task3.imp = false;
-        
-        return [task1, task2, task3]
-        
+    func getTask(){
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        do {
+            tasks = try context.fetch(Task.fetchRequest())
+            print(tasks)
+        } catch {
+            print("Error fetching data")
+        }
         
     }
-    
     
     @IBAction func addNewTask(_ sender: Any) {
         performSegue(withIdentifier: "addnewtask", sender: nil)
